@@ -9,9 +9,9 @@ php bin/console doctrine:schema:create
 bin/console doctrine:fixture:load
             
             TEST
-php bin/console doctrine:database:create --env=test
-php bin/console doctrine:schema:create --env=test
-bin/console doctrine:fixture:load  --env=test
+php bin/console doctrine:database:create --env=test 
+php bin/console doctrine:schema:create --env=test 
+bin/console doctrine:fixture:load  --env=test 
 
 ----------------Levantar ---------------
 
