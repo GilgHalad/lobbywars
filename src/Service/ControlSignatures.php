@@ -12,7 +12,7 @@ class ControlSignatures
     }
 
     public function controlSignature($signatures)
-    {
+    {        
         $sig = str_split($signatures);
         $error = 0;
         $haveKing = 0;
