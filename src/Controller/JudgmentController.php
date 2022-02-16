@@ -96,21 +96,25 @@ class JudgmentController extends AbstractController
         $minus = 0;
 
         for ($i=0; $i <count($arrayResumen) ; $i++) { 
-            $header = 'The signature '.$arrayResumen[$i]['signature'].' have a comodin and ';
+            if ($arrayResumen[$i]['comodin'] == 1){
 
-            if ($i == 0 && $arrayResumen[0]['comodin'] == 1 && $arrayResumen[0]['total'] < $arrayResumen[1]['total']) {
-                $minus = $arrayResumen[1]['total'] - $arrayResumen[0]['total'];           
-            }
-            if ($i == 1 && $arrayResumen[1]['comodin'] == 1 && $arrayResumen[1]['total'] < $arrayResumen[0]['total']) {
-                    $minus = $arrayResumen[0]['total'] - $arrayResumen[1]['total'];           
-            }
-            if ($minus <= 5 || $minus >= -5) {
-                $minus+=+1;
-                $necesaryToWin =  $this->controlSignatures->comodinSignature($minus);  
-                $msg= $msg .$header.' need '. $necesaryToWin['point'] . ' points ('.$necesaryToWin['abbreviation'].'). </br> ';
-            } else {
-                $msg= $msg . $header.' dont can win. </br> ';
-            }             
+                $header = 'The signature '.$arrayResumen[$i]['signature'].' have a comodin and ';
+
+                if ($i == 0 && $arrayResumen[0]['comodin'] == 1 && $arrayResumen[0]['total'] < $arrayResumen[1]['total']) {
+                    $minus = $arrayResumen[1]['total'] - $arrayResumen[0]['total'];           
+                }
+                if ($i == 1 && $arrayResumen[1]['comodin'] == 1 && $arrayResumen[1]['total'] < $arrayResumen[0]['total']) {
+                        $minus = $arrayResumen[0]['total'] - $arrayResumen[1]['total'];           
+                }
+
+                if ($minus < 5 && $minus >= -5) {
+                    $minus+=+1;
+                    $necesaryToWin =  $this->controlSignatures->comodinSignature($minus);  
+                    $msg= $msg .$header.' need '. $necesaryToWin['point'] . ' points ('.$necesaryToWin['abbreviation'].'). </br> ';
+                } else {
+                    $msg= $msg . $header.' dont can add more signature to win. </br> ';
+                }
+            }        
         }
         
         return $msg;
