@@ -17,6 +17,10 @@ bin/console doctrine:fixture:load  --env=test
 
 php -S localhost:8000 -t public
 
+----------------Caso de uso ---------------  
+  
+http://localhost:8000/judgment?plaintiff=kkk&defendant=kkk
+
 ----------------- Info -----------------
 
 BD MYSQL 127.0.0.1 lawsuits  User: root  Pass: root  
